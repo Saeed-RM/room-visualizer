@@ -37,3 +37,52 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.wrapper{
+    /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar{
+  width: 30%;
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  justify-content: space-around;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding-top: 10px;
+  background-color: #323232ce;
+  transition-delay: 1s;
+  transition: ease-in-out;
+}
+
+.nav-bar-btn{
+  margin: 0 auto;
+  padding: 3px 15px;
+  display: flex;  
+  justify-content: space-between;
+  font-size: 14px;
+  height: 30px;
+  border-radius: 10px;
+  color: white;
+  background-color: #323232e7;
+  transition: background-color 0.6s ease;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-bar-btn svg {
+  margin-right: 5px;
+}
+
+.nav-bar-btn:hover {
+  color: black;
+  background-color: white
+}
