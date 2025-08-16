@@ -216,3 +216,53 @@ body {
 .action-btn:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
+
+.bg-dark {
+  position: fixed;
+  inset: 0;
+  background-color: #444;
+  z-index: -1;
+}
+
+.slide-wrapper {
+  transition: filter 0.2s ease;
+}
+.slide-wrapper.blurring {
+  filter: blur(8px);
+}
+
+.add-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #555;
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+.add-room:hover {
+  background: #666;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.actions button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.actions button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
