@@ -86,3 +86,133 @@ body {
   color: black;
   background-color: white
 }
+
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.841);
+}
+
+.swiper-container {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  height: 80%;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.swiper-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+ .swiper-image {
+  border-radius: 0.5rem;
+  width: '100px' !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.splide__slide{
+  padding: 15px !important;
+}
+
+.room-info {
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.room-info h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.room-info p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+
+/* Add Room slide */
+.add-room-slide {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add-room-slide:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Room info section */
+.room-info {
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.room-info h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.room-info p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+/* Action buttons */
+.room-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
