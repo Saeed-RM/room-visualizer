@@ -34,7 +34,7 @@ body {
 
 .nav-bar-btn {
   margin: 0 auto;
-  padding: 3px 15px;
+  padding: 3px 10px;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -47,8 +47,10 @@ body {
   cursor: pointer;
 }
 
+
+
 .nav-bar-btn svg {
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
 .nav-bar-btn:hover {
@@ -86,11 +88,15 @@ body {
   flex-direction: column;
 }
 
-.swiper-content,
 .splide__track,
 .splide__list,
 .splide__slide {
   height: 100%;
+}
+
+.splide__slide{
+  padding: 0 15px;
+  height: auto !important;
 }
 
 /* SLIDE FRAME */
@@ -125,6 +131,14 @@ body {
   color: white;
 }
 
+.room-info-wrapper{
+  width: 65%;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
 .room-info h3 {
   font-size: 1rem;
   font-weight: bold;
@@ -148,10 +162,19 @@ body {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 8px;
-  padding: 0.5rem;
+  padding: 3px 10px;
   color: white;
   cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
   transition: background 0.2s ease;
+  align-items: center;
+  height: min-content;
+}
+
+.actions button svg {
+  margin-right: 10px;
 }
 
 .actions button:hover {
@@ -164,8 +187,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   background: #555;
+  height: 100%;
   color: white;
   cursor: pointer;
   border-radius: 12px;
@@ -181,4 +204,32 @@ body {
   inset: 0;
   background-color: #444;
   z-index: -1;
+}
+
+
+/* Make images fill without black spaces */
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ✅ zooms/crops instead of empty bars */
+  display: block;
+}
+
+/* Close button styling */
+.close-btn {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  z-index: 60;
+  font-size: 1.5rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
