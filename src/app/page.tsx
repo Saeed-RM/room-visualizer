@@ -4,7 +4,7 @@ import { Copy, Heart, HouseSimple, Pause, Plus, ShareNetwork, SignOut } from "@p
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [showSwiper, setShowSwiper] = useState(false);
@@ -18,8 +18,9 @@ const App = () => {
     { id: "bedroom", name: "Bedroom", src: "./image_3.jpg", floor: "Bedding - Linen", wall:" Accent - Warm oak" },
   ]);
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0); // active room index
   const [isSwiping, setIsSwiping] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(index ?? 0);
 
   const isAddRoomSlide = index === rooms.length;
   const active = !isAddRoomSlide ? rooms[index] : null;
@@ -32,6 +33,13 @@ const App = () => {
       { ...prev[0], id: `room-${prev.length + 1}`, name: `New Room ${prev.length + 1}` },
     ]);
   };
+
+  // ✅ Sync current slide with active room index when opening swiper
+  useEffect(() => {
+    if (showSwiper) {
+      setCurrentSlide(index);
+    }
+  }, [showSwiper, index]);
 
   return (
     <div
@@ -107,15 +115,17 @@ const App = () => {
                 <Splide
                   options={{
                     padding: "15rem",
+                    gap: "30px",   
                     rewind: false,
                     arrows: false,
                     pagination: false,
-                    start: index, // ✅ start from last selected
+                    start: currentSlide, // ✅ always start at synced slide
                   }}
                   onDrag={() => setIsSwiping(true)}
                   onMove={() => setIsSwiping(true)}
                   onMoved={(_, newIndex) => {
-                    setIndex(newIndex); // ✅ save last selected room
+                    setCurrentSlide(newIndex);
+                    setIndex(newIndex); // ✅ update active room index
                     setIsSwiping(false);
                   }}
                   onDragged={() => setIsSwiping(false)}
@@ -126,25 +136,24 @@ const App = () => {
                         className={`slide-frame ${isSwiping ? "blurring" : ""}`}
                         onClick={() => {
                           if (i !== index) {
-                            // ✅ Clicking side slide acts as swipe
-                             const splide = document.querySelector(".splide")?.splide;
+                            const splide = document.querySelector(".splide")?.splide;
                             splide?.go(i);
                           }
                         }}
                       >
                         <img src={room.src} alt={room.name} className="slide-img" />
                       </div>
-    </SplideSlide>
-  ))}
+                    </SplideSlide>
+                  ))}
 
-              {/* Add Room Slide */}
-              <SplideSlide key="add-room">
-                <div className="add-room" onClick={handleAddRoom}>
-                  <Plus size={40} />
-                  <p>Add Room</p>
-                </div>
-              </SplideSlide>
-            </Splide>
+                  {/* Add Room Slide */}
+                  <SplideSlide key="add-room">
+                    <div className="add-room" onClick={handleAddRoom}>
+                      <Plus size={40} />
+                      <p>Add Room</p>
+                    </div>
+                  </SplideSlide>
+                </Splide>
               </div>
 
               {/* ROOM INFO + ACTIONS */}
