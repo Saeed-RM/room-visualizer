@@ -5,7 +5,8 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Room {
   id: string;
@@ -17,21 +18,26 @@ interface Room {
 }
 
 const LOCAL_STORAGE_KEY = "cachedRooms";
+const ACTIVE_INDEX_KEY = "cachedActiveIndex";
 
 const App = () => {
   const [showSwiper, setShowSwiper] = useState(false);
   const [rooms, setRooms] = useState<Room[]>([]);
+  const [lastRoomIndex, setLastRoomIndex] = useState(0);
   const [index, setIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
 
   const active = rooms[index];
 
-  // Load rooms from localStorage or default
+  // Load rooms and active index from localStorage
   useEffect(() => {
-    const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (cached) {
-      setRooms(JSON.parse(cached));
+    const cachedRooms = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const cachedIndex = localStorage.getItem(ACTIVE_INDEX_KEY);
+
+    if (cachedRooms) {
+      const parsedRooms: Room[] = JSON.parse(cachedRooms);
+      setRooms(parsedRooms);
     } else {
       const initialRooms: Room[] = [
         { id: "living", name: "Living Room", src: "./image_1.jpg", floor: "Dark forest hardwood", wall:"Pearl white", isFavorite: false },
@@ -40,35 +46,75 @@ const App = () => {
       ];
       setRooms(initialRooms);
     }
+
+    if (cachedIndex) {
+      const idx = parseInt(cachedIndex, 10);
+      if (!isNaN(idx)) {
+        setIndex(idx);
+        setLastRoomIndex(idx);
+        setCurrentSlide(idx);
+      }
+    }
   }, []);
 
-  // Persist rooms whenever they change
+  // Persist rooms and active index
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(rooms));
-  }, [rooms]);
+    localStorage.setItem(ACTIVE_INDEX_KEY, index.toString());
+  }, [rooms, index]);
 
-  const handleClose = () => setShowSwiper(false);
+  const handleClose = () => {
+    setShowSwiper(false);
+    setIndex(lastRoomIndex);
+    setCurrentSlide(lastRoomIndex);
+  }
 
   const handleAddRoom = () => {
-    const newRoom: Room = { ...rooms[0], id: `room-${rooms.length + 1}`, name: `New Room ${rooms.length + 1}`, isFavorite: false };
+    const newRoom: Room = { ...rooms[0], id: `room-${Date.now()}`, name: `New Room ${rooms.length + 1}`, isFavorite: false };
     setRooms(prev => [newRoom, ...prev]);
     setIndex(0);
     setCurrentSlide(0);
   };
 
   const toggleFavorite = (roomId: string) => {
+    const room = rooms.find(r => r.id === roomId);
+    const isRoomBeingAddedToFavorites = !room?.isFavorite;
+
+    if (isRoomBeingAddedToFavorites){
+      toast(`Added to favorites!`, { theme: 'dark', position: 'bottom-center' });
+    }
+
     setRooms(prev => prev.map(r => r.id === roomId ? { ...r, isFavorite: !r.isFavorite } : r));
   };
 
   const duplicateRoom = (roomId: string) => {
     const roomToDuplicate = rooms.find(r => r.id === roomId);
     if (!roomToDuplicate) return;
-    const newRoom: Room = { ...roomToDuplicate, id: `room-${rooms.length + 1}`, name: `${roomToDuplicate.name} Copy` };
-    setRooms(prev => [newRoom, ...prev]);
-    setIndex(0);
-    setCurrentSlide(0);
 
-    toast(`"${newRoom.name}" duplicated!`);
+    const newRoom: Room = {
+      ...roomToDuplicate,
+      id: `room-${Date.now()}`,
+      name: `${roomToDuplicate.name} Copy`,
+    };
+
+    toast(`Successfully duplicated "${newRoom.name}" !`, { theme:'dark', position:'bottom-center' });
+
+    setIsSwiping(true);
+
+    setRooms(prev => {
+      const updatedRooms = [newRoom, ...prev];
+
+      requestAnimationFrame(() => {
+        const splide = document.querySelector(".splide")?.splide;
+        if (splide) splide.go(0, true);
+        setIndex(0);
+        setCurrentSlide(0);
+
+        setTimeout(() => setIsSwiping(false), 350);
+      });
+
+      return updatedRooms;
+    });
   };
 
   useEffect(() => {
@@ -80,6 +126,16 @@ const App = () => {
       className="app-wrapper"
       style={{ backgroundImage: !showSwiper && active ? `url(${active.src})` : "none" }}
     >
+      <ToastContainer 
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
       {/* NAVBAR */}
       <AnimatePresence>
         {!showSwiper && (
@@ -154,6 +210,10 @@ const App = () => {
                     setCurrentSlide(newIndex);
                     setIndex(newIndex);
                     setIsSwiping(false);
+
+                    if (newIndex < rooms.length) {
+                      setLastRoomIndex(newIndex);
+                    }
                   }}
                   onDragged={() => setIsSwiping(false)}
                 >
