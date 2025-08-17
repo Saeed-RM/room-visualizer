@@ -5,13 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -25,30 +18,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.bg {
-  /* The image used */
-  background-image: url("../../public/livingRoom.avif");
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.wrapper{
-    /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.navbar{
+/* NAVBAR */
+.navbar {
   width: 30%;
   height: 50px;
   display: flex;
@@ -59,14 +30,12 @@ body {
   border-bottom-right-radius: 12px;
   padding-top: 10px;
   background-color: #323232ce;
-  transition-delay: 1s;
-  transition: ease-in-out;
 }
 
-.nav-bar-btn{
+.nav-bar-btn {
   margin: 0 auto;
   padding: 3px 15px;
-  display: flex;  
+  display: flex;
   justify-content: space-between;
   font-size: 14px;
   height: 30px;
@@ -84,9 +53,10 @@ body {
 
 .nav-bar-btn:hover {
   color: black;
-  background-color: white
+  background-color: white;
 }
 
+/* APP WRAPPER */
 .app-wrapper {
   position: relative;
   width: 100%;
@@ -95,7 +65,7 @@ body {
   background-position: center;
 }
 
-
+/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
@@ -103,7 +73,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.841);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .swiper-container {
@@ -116,64 +86,39 @@ body {
   flex-direction: column;
 }
 
-
-.swiper-content {
-  flex: 1;
-  overflow: hidden;
-}
-
- .swiper-image {
-  border-radius: 0.5rem;
-  width: '100px' !important;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.splide__slide{
-  padding: 15px !important;
-}
-
-.room-info {
-  padding: 1rem;
-  text-align: center;
-  color: white;
-}
-
-.room-info h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
-  text-transform: uppercase;
-}
-
-.room-info p {
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
-
-
-/* Add Room slide */
-.add-room-slide {
-  width: 100%;
+.swiper-content,
+.splide__track,
+.splide__list,
+.splide__slide {
   height: 100%;
-  border: 2px dashed rgba(255, 255, 255, 0.6);
-  border-radius: 0.75rem;
+}
+
+/* SLIDE FRAME */
+.slide-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
+  background: #222;
+  transition: filter 0.25s ease, transform 0.25s ease;
 }
 
-.add-room-slide:hover {
-  background: rgba(255, 255, 255, 0.1);
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
-/* Room info section */
+.blurring {
+  filter: blur(8px);
+  transform: scale(0.99);
+}
+
+/* ROOM INFO */
 .room-info {
   padding: 1rem;
   text-align: center;
@@ -192,46 +137,28 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Action buttons */
-.room-actions {
+.actions {
   display: flex;
-  gap: 0.75rem;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
 }
 
-.action-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+.actions button {
   background: rgba(255, 255, 255, 0.1);
-  color: white;
   border: none;
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.5rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: white;
   cursor: pointer;
-  font-size: 0.85rem;
   transition: background 0.2s ease;
 }
 
-.action-btn:hover {
+.actions button:hover {
   background: rgba(255, 255, 255, 0.25);
 }
 
-
-.bg-dark {
-  position: fixed;
-  inset: 0;
-  background-color: #444;
-  z-index: -1;
-}
-
-.slide-wrapper {
-  transition: filter 0.2s ease;
-}
-.slide-wrapper.blurring {
-  filter: blur(8px);
-}
-
+/* ADD ROOM SLIDE */
 .add-room {
   display: flex;
   flex-direction: column;
@@ -248,21 +175,10 @@ body {
   background: #666;
 }
 
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.75rem;
-}
-.actions button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.actions button:hover {
-  background: rgba(255, 255, 255, 0.2);
+/* DARK BACKGROUND */
+.bg-dark {
+  position: fixed;
+  inset: 0;
+  background-color: #444;
+  z-index: -1;
 }

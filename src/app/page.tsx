@@ -34,7 +34,10 @@ const App = () => {
   };
 
   return (
-    <div className="app-wrapper" style={{ backgroundImage: !showSwiper && active ? `url(${active.src})` : "none" }}>
+    <div
+      className="app-wrapper"
+      style={{ backgroundImage: !showSwiper && active ? `url(${active.src})` : "none" }}
+    >
       {/* NAVBAR */}
       <AnimatePresence>
         {!showSwiper && (
@@ -89,7 +92,7 @@ const App = () => {
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* SWIPER */}
@@ -101,16 +104,18 @@ const App = () => {
                     arrows: false,
                     pagination: false,
                   }}
+                  onDrag={() => setIsSwiping(true)}
+                  onMove={() => setIsSwiping(true)}
                   onMoved={(_, newIndex) => {
                     setIndex(newIndex);
                     setIsSwiping(false);
                   }}
-                  onMove={() => setIsSwiping(true)}
+                  onDragged={() => setIsSwiping(false)}
                 >
                   {rooms.map((room) => (
                     <SplideSlide key={room.id}>
-                      <div className={`slide-wrapper ${isSwiping ? "blurring" : ""}`}>
-                        <img src={room.src} alt={room.name} className="swiper-image" />
+                      <div className={`slide-frame ${isSwiping ? "blurring" : ""}`}>
+                        <img src={room.src} alt={room.name} className="slide-img" />
                       </div>
                     </SplideSlide>
                   ))}
@@ -147,7 +152,15 @@ const App = () => {
 
 export default App;
 
-function NavButton({ children, onClick, ariaLabel }: { children: React.ReactNode; onClick?: () => void; ariaLabel: string }) {
+function NavButton({
+  children,
+  onClick,
+  ariaLabel,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  ariaLabel: string;
+}) {
   return (
     <button aria-label={ariaLabel} onClick={onClick} className="nav-bar-btn">
       {children}
