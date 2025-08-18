@@ -18,7 +18,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* NAVBAR */
 .navbar {
   width: 30%;
   height: 50px;
@@ -58,7 +57,6 @@ body {
   background-color: white;
 }
 
-/* APP WRAPPER */
 .app-wrapper {
   position: relative;
   width: 100%;
@@ -67,7 +65,6 @@ body {
   background-position: center;
 }
 
-/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
@@ -98,7 +95,6 @@ body {
   height: auto !important;
 }
 
-/* SLIDE FRAME */
 .slide-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -123,8 +119,6 @@ body {
   transform: scale(0.99);
 }
 
-/* ROOM INFO */
-/* ROOM INFO */
 .room-info {
   padding-inline: 15rem;   
   color: white;
@@ -132,7 +126,6 @@ body {
   margin-top: 0.75rem;
 }
 
-/* make the inner row layout flexible */
 .room-info-wrapper {
   margin: 0 auto;
   display: flex;
@@ -187,7 +180,6 @@ body {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* ADD ROOM SLIDE */
 .add-room {
   display: flex;
   flex-direction: column;
@@ -204,7 +196,6 @@ body {
   background: #666;
 }
 
-/* DARK BACKGROUND */
 .bg-dark {
   position: fixed;
   inset: 0;
@@ -213,15 +204,13 @@ body {
 }
 
 
-/* Make images fill without black spaces */
 .slide-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ✅ zooms/crops instead of empty bars */
+  object-fit: cover; 
   display: block;
 }
 
-/* Close button styling */
 .close-btn {
   position: absolute;
   top: 2%;
@@ -239,3 +228,4 @@ body {
 .close-btn:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
