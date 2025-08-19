@@ -9,7 +9,6 @@ type RoomSlideProps = {
   name: string;
   isSwiping: boolean;
   isActive: boolean;
-  onSelect: () => void;
 };
 
 const RoomSlide = ({ id, src, name, isSwiping, isActive, onSelect }: RoomSlideProps) => (

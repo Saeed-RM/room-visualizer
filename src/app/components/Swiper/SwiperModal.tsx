@@ -87,10 +87,6 @@ const SwiperModal = ({
                   name={room.name}
                   isSwiping={isSwiping}
                   isActive={i === index}
-                  onSelect={() => {
-                    const splide = document.querySelector(".splide")?.splide;
-                    splide?.go(i);
-                  }}
                 />
               ))}
               <AddRoomSlide onAdd={onAddRoom} />
