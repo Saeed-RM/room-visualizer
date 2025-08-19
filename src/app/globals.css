@@ -1,224 +1,224 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar {
-  width: 30%;
-  height: 50px;
-  display: flex;
-  flex-wrap: nowrap;
-  margin: 0 auto;
-  justify-content: space-around;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding-top: 10px;
-  background-color: #323232ce;
+    width: 30%;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    justify-content: space-around;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding-top: 10px;
+    background-color: #323232ce;
 }
 
 .nav-bar-btn {
-  margin: 0 auto;
-  padding: 3px 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  height: 30px;
-  border-radius: 10px;
-  color: white;
-  background-color: #323232e7;
-  transition: background-color 0.6s ease;
-  align-items: center;
-  cursor: pointer;
+    margin: 0 auto;
+    padding: 3px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    height: 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: #323232e7;
+    transition: background-color 0.6s ease;
+    align-items: center;
+    cursor: pointer;
 }
 
 .nav-bar-btn svg {
-  margin-right: 6px;
+    margin-right: 6px;
 }
 
 .nav-bar-btn:hover {
-  color: black;
-  background-color: white;
+    color: black;
+    background-color: white;
 }
 
 .app-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
 .overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .swiper-container {
-  position: relative;
-  z-index: 50;
-  width: 100%;
-  height: 80%;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    height: 80%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .splide__track,
 .splide__list,
 .splide__slide {
-  height: 100%;
+    height: 100%;
 }
 
 .splide__slide {
-  height: auto !important;
+    height: auto !important;
 }
 
 .slide-frame {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #222;
-  transition: filter 0.25s ease, transform 0.25s ease;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    transition: filter 0.25s ease, transform 0.25s ease;
 }
 
 .slide-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* merged contain + cover into final version */
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* merged contain + cover into final version */
+    display: block;
 }
 
 .blurring {
-  filter: blur(8px);
-  transform: scale(0.99);
+    filter: blur(8px);
+    transform: scale(0.99);
 }
 
 .room-info {
-  padding-inline: 15rem;
-  color: white;
-  text-align: left;
-  margin-top: 0.75rem;
+    padding-inline: 15rem;
+    color: white;
+    text-align: left;
+    margin-top: 0.75rem;
 }
 
 .room-info-wrapper {
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
 
 @media (max-width: 1280px) {
-  .room-info {
-    padding-inline: 2rem;
-  }
+    .room-info {
+        padding-inline: 2rem;
+    }
 }
 
 .room-info h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
 }
 
 .room-info p {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 1rem;
 }
 
 .actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
 }
 
 .actions button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 8px;
-  padding: 3px 10px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  transition: background 0.2s ease;
-  align-items: center;
-  height: min-content;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    padding: 3px 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    transition: background 0.2s ease;
+    align-items: center;
+    height: min-content;
 }
 
 .actions button svg {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .actions button:hover {
-  background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .add-room {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #555;
-  height: 100%;
-  color: white;
-  cursor: pointer;
-  border-radius: 12px;
-  transition: background 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #555;
+    height: 100%;
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.2s ease;
 }
 
 .add-room:hover {
-  background: #666;
+    background: #666;
 }
 
 .bg-dark {
-  position: fixed;
-  inset: 0;
-  background-color: #444;
-  z-index: -1;
+    position: fixed;
+    inset: 0;
+    background-color: #444;
+    z-index: -1;
 }
 
 .close-btn {
-  position: absolute;
-  top: 2%;
-  left: 50%;
-  z-index: 60;
-  font-size: 1.5rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    z-index: 60;
+    font-size: 1.5rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
 }
 
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.25);
 }
