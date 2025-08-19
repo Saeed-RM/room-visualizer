@@ -86,7 +86,6 @@ const SwiperModal = ({
                   src={room.src}
                   name={room.name}
                   isSwiping={isSwiping}
-                  isActive={i === index}
                 />
               ))}
               <AddRoomSlide onAdd={onAddRoom} />

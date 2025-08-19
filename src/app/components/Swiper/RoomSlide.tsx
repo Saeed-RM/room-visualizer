@@ -8,16 +8,13 @@ type RoomSlideProps = {
   src: string;
   name: string;
   isSwiping: boolean;
-  isActive: boolean;
 };
 
-const RoomSlide = ({ id, src, name, isSwiping, isActive, onSelect }: RoomSlideProps) => (
+const RoomSlide = ({ id, src, name, isSwiping }: RoomSlideProps) => (
   <SplideSlide key={id}>
     <div
       className={`slide-frame ${isSwiping ? "blurring" : ""}`}
-      onClick={() => {
-        if (!isActive) onSelect();
-      }}
+      
     >
       <img src={src} alt={name} className="slide-img" />
     </div>
