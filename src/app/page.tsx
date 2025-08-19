@@ -76,8 +76,8 @@ const App = () => {
   const toggleFavorite = (roomId: string) => {
     const room = rooms.find((r) => r.id === roomId);
     if (room && !room.isFavorite) {
-      toast(`Added to favorites!!!`, { theme: "colored", position: "bottom-center", hideProgressBar: true,style:{
-        backgroundColor: "#d90000ff",
+      toast(`Nice job, Added to favorites`, { theme: "colored", position: "bottom-center", hideProgressBar: true,style:{
+        backgroundColor: "#b6465f",
         color: "#fff",
       } });
     }
